@@ -28,10 +28,16 @@ public class TrackService {
 
         Artist artist = artistRepository.findById(idA);
 
-        track.getArtists().add(artist);
-        artist.getTracks().add(track);
-        trackRepository.save(track);
+        addTrackToArtist(idA, track.getId());
 
+    }
+
+    public void addTrackToArtist(long idA, long idT){
+        Artist artist =artistRepository.findById(idA);
+        Track track = trackRepository.findById(idT);
+
+        artist.getTracks().add(track);
+        track.getArtists().add(artist);
     }
 
     public List<Track> findAll(){

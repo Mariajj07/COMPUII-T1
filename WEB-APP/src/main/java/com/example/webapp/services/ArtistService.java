@@ -7,10 +7,31 @@ import com.example.webapp.repositories.TrackRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class ArtistService {
     private ArtistRepository artistRepository;
     private TrackRepository trackRepository;
+
+
+    public void init() {
+
+        List<Artist> artists = artistRepository.findAll();
+        List<Track> tracks = trackRepository.findAll();
+        Random r = new Random();
+        for (Artist a : artists) {
+            for (int i = 0; i < 10; i++) {
+                Track t = tracks.get(r.nextInt(tracks.size()));
+                if (!a.getTracks().contains(t)) {
+                    a.getTracks().add(t);
+                    t.getArtists().add(a);
+                }
+
+            }
+        }
+    }
+
+
 
     public void setArtistRepository(ArtistRepository artistRepository) {
         this.artistRepository = artistRepository;
@@ -31,22 +52,9 @@ public class ArtistService {
         artistRepository.delete(id);
     }
 
+
     public List<Artist> findAll() {
-        List<Artist> artists = artistRepository.findAll();
-        List<Track> tracks = trackRepository.findAll();
-
-        for (Artist artist : artists) {
-            List<Track> artistTracks = new ArrayList<>();
-            for (Track t : tracks) {
-                if (t.getArtistId() == artist.getId()) {
-                    artistTracks.add(t);
-                }
-            }
-            artist.setTracks(artistTracks);
-        }
-
-
-        return artists;
+        return artistRepository.findAll();
     }
 
     public Artist findByName(String name){

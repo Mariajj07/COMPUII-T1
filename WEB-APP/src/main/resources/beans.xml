@@ -9,7 +9,8 @@
         <bean id="artistRepository" class="com.example.webapp.repositories.ArtistRepository"/>
         <bean id="trackRepository" class="com.example.webapp.repositories.TrackRepository"/>
 
-    <bean id="ArtistService" class="com.example.webapp.services.ArtistService">
+    <bean id="ArtistService" class="com.example.webapp.services.ArtistService"
+          init-method="init">
         <property name="artistRepository" ref="artistRepository"/>
         <property name="trackRepository" ref="trackRepository"/>
     </bean>

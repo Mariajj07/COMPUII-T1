@@ -63,4 +63,8 @@ public class TrackRepository {
         writeToFile();
 
     }
+
+    public Track findById(long id){
+        return tracks.stream().filter(track -> track.getId()==id).findFirst().orElse(null);
+    }
 }
