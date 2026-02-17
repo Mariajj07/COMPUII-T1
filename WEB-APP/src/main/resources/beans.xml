@@ -9,10 +9,12 @@
         <bean id="artistRepository" class="com.example.webapp.repositories.ArtistRepository"/>
         <bean id="trackRepository" class="com.example.webapp.repositories.TrackRepository"/>
 
-        <bean id="ArtistService" class="com.example.webapp.services.ArtistService">
-            <property name="artistRepository" ref="artistRepository"/>
-        </bean>
-        <bean id="TrackService" class="com.example.webapp.services.TrackService">
+    <bean id="ArtistService" class="com.example.webapp.services.ArtistService">
+        <property name="artistRepository" ref="artistRepository"/>
+        <property name="trackRepository" ref="trackRepository"/>
+    </bean>
+
+    <bean id="TrackService" class="com.example.webapp.services.TrackService">
             <property name="trackRepository" ref="trackRepository"/>
             <property name="artistRepository" ref="artistRepository"/>
         </bean>

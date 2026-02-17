@@ -5,6 +5,7 @@ import com.example.webapp.model.Track;
 import com.example.webapp.repositories.ArtistRepository;
 import com.example.webapp.repositories.TrackRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ArtistService {
@@ -15,8 +16,8 @@ public class ArtistService {
         this.artistRepository = artistRepository;
     }
 
-    public TrackRepository getTrackRepository() {
-        return trackRepository;
+    public void setTrackRepository(TrackRepository trackRepository) {
+        this.trackRepository = trackRepository;
     }
 
     public void addArtist(String name, String nationality){
@@ -30,8 +31,22 @@ public class ArtistService {
         artistRepository.delete(id);
     }
 
-    public List<Artist> findAll(){
-        return artistRepository.findAll();
+    public List<Artist> findAll() {
+        List<Artist> artists = artistRepository.findAll();
+        List<Track> tracks = trackRepository.findAll();
+
+        for (Artist artist : artists) {
+            List<Track> artistTracks = new ArrayList<>();
+            for (Track t : tracks) {
+                if (t.getArtistId() == artist.getId()) {
+                    artistTracks.add(t);
+                }
+            }
+            artist.setTracks(artistTracks);
+        }
+
+
+        return artists;
     }
 
     public Artist findByName(String name){

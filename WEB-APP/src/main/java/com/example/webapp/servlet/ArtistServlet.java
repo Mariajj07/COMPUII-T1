@@ -25,6 +25,7 @@ public class ArtistServlet extends HttpServlet {
         encoder = new Gson();
         ApplicationContext context = WebApplicationContextUtils.getRequiredWebApplicationContext(getServletContext());
         service = context.getBean(ArtistService.class);
+
     }
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {

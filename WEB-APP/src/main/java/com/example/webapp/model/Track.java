@@ -9,7 +9,16 @@ public class Track {
     private String genre;
     private double duration;
     private String albumTitle;
-    private List<Artist> artists;
+    private transient List<Artist> artists;
+    private long artistId;
+
+    public long getArtistId() {
+        return artistId;
+    }
+
+    public void setArtistId(long artistId) {
+        this.artistId = artistId;
+    }
 
     public Track(String title, String genre, long duration, String albumTitle) {
         this.title = title;

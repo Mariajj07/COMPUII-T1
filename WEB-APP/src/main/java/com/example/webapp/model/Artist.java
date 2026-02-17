@@ -7,7 +7,7 @@ public class Artist {
     private long id;
     private String name;
     private String nationality;
-    private transient List<Track> tracks;
+    private List<Track> tracks;
 
     public Artist(String name, String nationality) {
         this.name = name;
