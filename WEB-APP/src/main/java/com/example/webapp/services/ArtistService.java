@@ -4,16 +4,23 @@ import com.example.webapp.model.Artist;
 import com.example.webapp.model.Track;
 import com.example.webapp.repositories.ArtistRepository;
 import com.example.webapp.repositories.TrackRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+@Component
 public class ArtistService {
+
+    @Autowired
     private ArtistRepository artistRepository;
+
+    @Autowired
     private TrackRepository trackRepository;
 
-
+    @Autowired
     public void init() {
 
         List<Artist> artists = artistRepository.findAll();

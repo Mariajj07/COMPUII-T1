@@ -3,12 +3,14 @@ package com.example.webapp.repositories;
 import com.example.webapp.model.Artist;
 import com.example.webapp.model.Track;
 import com.google.gson.Gson;
+import org.springframework.stereotype.Component;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Component
 public class TrackRepository {
     private List<Track> tracks;
     private long currentId;
