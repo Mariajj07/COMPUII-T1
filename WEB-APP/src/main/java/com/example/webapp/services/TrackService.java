@@ -4,11 +4,16 @@ import com.example.webapp.model.Artist;
 import com.example.webapp.model.Track;
 import com.example.webapp.repositories.ArtistRepository;
 import com.example.webapp.repositories.TrackRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class TrackService {
+    @Autowired
     private TrackRepository trackRepository;
+    @Autowired
     private ArtistRepository artistRepository;
 
     public void setTrackRepository(TrackRepository trackRepository) {
