@@ -5,6 +5,8 @@ import com.example.webapp.model.Track;
 import com.example.webapp.repositories.TrackRepository;
 import com.example.webapp.services.ArtistService;
 import com.example.webapp.services.TrackService;
+import com.example.webapp.views.ArtistView;
+import com.example.webapp.views.TrackView;
 import com.google.gson.Gson;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -28,14 +30,16 @@ public class TrackServlet extends HttpServlet {
         service = context.getBean(TrackService.class);
     }
 
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws IOException {
+
         List<Track> tracks = service.findAll();
 
-        String json = encoder.toJson(tracks);
+        TrackView view = new TrackView();
+        String html = view.listTracks(tracks);
 
-
-        resp.setContentType("application/json");
-        resp.getWriter().println(json);
+        resp.setContentType("text/html");
+        resp.getWriter().println(html);
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {

@@ -3,6 +3,7 @@ package com.example.webapp.servlet;
 
 import com.example.webapp.model.Artist;
 import com.example.webapp.services.ArtistService;
+import com.example.webapp.views.ArtistView;
 import com.google.gson.Gson;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -28,14 +29,16 @@ public class ArtistServlet extends HttpServlet {
 
     }
 
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws IOException {
+
         List<Artist> artists = service.findAll();
 
-        String json = encoder.toJson(artists);
+        ArtistView view = new ArtistView();
+        String html = view.listArtists(artists);
 
-
-        resp.setContentType("application/json");
-        resp.getWriter().println(json);
+        resp.setContentType("text/html");
+        resp.getWriter().println(html);
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
